@@ -1,25 +1,27 @@
 // Function to detect potential VPN usage
 async function checkVPN() {
     try {
-        // Get public IP information
-        const response = await fetch('https://ipapi.co/json/');
+        // Get public IP and detailed geolocation information
+        const response = await fetch('https://api.ipgeolocation.io/ipgeo?apiKey=YOUR_API_KEY');
         const data = await response.json();
         
-        // Check for common VPN indicators
         const vpnWarning = document.getElementById('vpn-warning');
         
-        // Check if timezone matches country
-        const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-        const browserCountry = timeZone.split('/')[1];
-        
-        // If IP country doesn't match timezone country or other suspicious indicators
-        if (data.country !== browserCountry || 
-            data.hosting === true || 
-            data.proxy === true) {
+        // Check if the IP belongs to a known VPN or proxy provider
+        if (data.isp.includes('VPN') || data.isp.includes('Proxy') || data.security.is_vpn) {
             vpnWarning.style.display = 'block';
             return true;
         }
-        
+
+        // Ensure timezone matches the country from IP
+        const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        const browserCountry = timeZone.split('/')[1];
+
+        if (data.country_name !== browserCountry) {
+            vpnWarning.style.display = 'block';
+            return true;
+        }
+
         vpnWarning.style.display = 'none';
         return false;
     } catch (error) {
@@ -101,7 +103,7 @@ function getLocation() {
                         
                         ${address.road ? `
                             <span class="address-label">Street:</span>
-                            <span>${address.road}</span>
+                            <span>${address.neighborhood || address.road}</span>
                         ` : ''}
                         
                         ${address.postcode ? `
