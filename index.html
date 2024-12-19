@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Live Location Finder by Mxolisi Prince Qongwani</title>
+    <style>
+        /* Modern color scheme and variables */
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary: #3b82f6;
+            --accent: #60a5fa;
+            --background: #f8fafc;
+            --card: #ffffff;
+            --text: #1e293b;
+            --text-light: #64748b;
+        }
+
+        /* Base styles */
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header styling */
+        .header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .header p {
+            margin: 0.5rem 0 0;
+            opacity: 0.9;
+        }
+
+        /* Story section styling */
+        .story-section {
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            color: white;
+            padding: 2rem;
+            margin: 2rem auto;
+            border-radius: 1rem;
+            max-width: 800px;
+            line-height: 1.7;
+        }
+
+        .story-section h2 {
+            color: #60a5fa;
+            margin-bottom: 1rem;
+        }
+
+        /* Main container */
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: var(--card);
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* VPN warning styling */
+        .vpn-warning {
+            background-color: #fef2f2;
+            border: 2px solid #dc2626;
+            color: #dc2626;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin: 1rem 0;
+            text-align: center;
+            display: none;
+        }
+
+        /* Button styling */
+        button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 300px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        button:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Status and address sections */
+        #status, #address {
+            margin: 2rem 0;
+            line-height: 1.6;
+            padding: 1.5rem;
+            background-color: #f8fafc;
+            border-radius: 0.5rem;
+        }
+
+        .loading {
+            color: var(--text-light);
+            font-style: italic;
+            text-align: center;
+        }
+
+        .error {
+            color: #dc2626;
+            text-align: center;
+            padding: 1rem;
+            background-color: #fee2e2;
+            border-radius: 0.5rem;
+        }
+
+        /* Grid layout for address */
+        .address-grid {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 1rem;
+            margin-top: 1rem;
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .address-label {
+            font-weight: 600;
+            color: var(--primary);
+            padding-right: 1.5rem;
+        }
+
+        /* Coordinates display */
+        .coordinates {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1rem 0;
+        }
+
+        .coordinate-box {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            min-width: 150px;
+            text-align: center;
+        }
+
+        /* Footer styling */
+        .footer {
+            margin-top: auto;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .footer a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .footer a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Live Location Finder</h1>
+        <p>Get your exact location in seconds</p>
+    </div>
+
+    <div class="story-section">
+        <h2>Why I Built This Tool</h2>
+        <p>Hey! I'm Mxolisi Prince Qongwani, a developer from South Africa. This tool was born out of personal frustration while shopping online.</p>
+        <p>One day, I wanted to buy a screwdriver set for phone repairs from AliExpress. Like many South Africans, I struggled with getting my exact location for shipping. The process was frustrating - copying coordinates, converting them to addresses, making sure everything was accurate...</p>
+        <p>That's when I thought: "Why not create a simple tool that automatically gets your precise location?" This app is the result - a free tool to help anyone get their exact address for online shopping, food delivery, or any other needs.</p>
+        <p>As a fellow South African, I know the challenges we face with international shipping and precise locations. This tool is my way of making that process a little easier for everyone. 🇿🇦</p>
+    </div>
+
+    <div class="container">
+        <div id="vpn-warning" class="vpn-warning">
+            ⚠️ VPN Detected! Please disable your VPN to get your true location.
+        </div>
+        <button onclick="checkVPNAndGetLocation()">📍 Get My Location</button>
+        <div id="status"></div>
+        <div id="address"></div>
+    </div>
+
+    <footer class="footer">
+        <h3>Created by Mxolisi Prince Qongwani</h3>
+        <div class="contact-info">
+            <a href="mailto:mxolisiprince87@gmail.com" target="_blank">📧 Email Me</a>
+            <a href="https://leece87.github.io/" target="_blank">👨‍💻 Portfolio</a>
+        </div>
+    </footer>
+
+    <script>
+        // Function to detect potential VPN usage
+        async function checkVPN() {
+            try {
+                // Get public IP information
+                const response = await fetch('https://ipapi.co/json/');
+                const data = await response.json();
+                
+                // Check for common VPN indicators
+                const vpnWarning = document.getElementById('vpn-warning');
+                
+                // Check if timezone matches country
+                const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+                const browserCountry = timeZone.split('/')[1];
+                
+                // If IP country doesn't match timezone country or other suspicious indicators
+                if (data.country !== browserCountry || 
+                    data.hosting === true || 
+                    data.proxy === true) {
+                    vpnWarning.style.display = 'block';
+                    return true;
+                }
+                
+                vpnWarning.style.display = 'none';
+                return false;
+            } catch (error) {
+                console.error('Error checking VPN:', error);
+                return false;
+            }
+        }
+
+        async function checkVPNAndGetLocation() {
+            const vpnDetected = await checkVPN();
+            if (vpnDetected) {
+                // Still allow getting location but with warning
+                getLocation();
+            } else {
+                getLocation();
+            }
+        }
+
+        function getLocation() {
+            const statusDiv = document.getElementById('status');
+            const addressDiv = document.getElementById('address');
+            
+            statusDiv.innerHTML = '<p class="loading">📍 Getting your location...</p>';
+            addressDiv.innerHTML = '';
+
+            if (!navigator.geolocation) {
+                statusDiv.innerHTML = '<p class="error">⚠️ Geolocation is not supported by your browser</p>';
+                return;
+            }
+
+            navigator.geolocation.getCurrentPosition(async (position) => {
+                const lat = position.coords.latitude;
+                const lon = position.coords.longitude;
+                
+                statusDiv.innerHTML = `
+                    <p style="text-align: center; font-weight: 600;">📍 Your coordinates:</p>
+                    <div class="coordinates">
+                        <div class="coordinate-box">
+                            <div>Latitude</div>
+                            <strong>${lat}</strong>
+                        </div>
+                        <div class="coordinate-box">
+                            <div>Longitude</div>
+                            <strong>${lon}</strong>
+                        </div>
+                    </div>
+                `;
+
+                try {
+                    const response = await fetch(
+                        `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`
+                    );
+                    const data = await response.json();
+                    
+                    if (data.address) {
+                        const address = data.address;
+                        addressDiv.innerHTML = `
+                            <p style="text-align: center; font-weight: 600; margin-bottom: 1rem;">📌 Your address:</p>
+                            <div class="address-grid">
+                                ${address.country ? `
+                                    <span class="address-label">Country:</span>
+                                    <span>${address.country}</span>
+                                ` : ''}
+                                
+                                ${address.state ? `
+                                    <span class="address-label">State/Province:</span>
+                                    <span>${address.state}</span>
+                                ` : ''}
+                                
+                                ${address.city || address.town || address.village ? `
+                                    <span class="address-label">City/Town:</span>
+                                    <span>${address.city || address.town || address.village}</span>
+                                ` : ''}
+                                
+                                ${address.suburb ? `
+                                    <span class="address-label">Suburb:</span>
+                                    <span>${address.suburb}</span>
+                                ` : ''}
+                                
+                                ${address.road ? `
+                                    <span class="address-label">Street:</span>
+                                    <span>${address.road}</span>
+                                ` : ''}
+                                
+                                ${address.postcode ? `
+                                    <span class="address-label">Postal Code:</span>
+                                    <span>${address.postcode}</span>
+                                ` : ''}
+                            </div>
+                        `;
+                    } else {
+                        addressDiv.innerHTML = `
+                            <p style="text-align: center; font-weight: 600;">📌 Full Address:</p>
+                            <p style="text-align: center;">${data.display_name}</p>
+                        `;
+                    }
+                } catch (error) {
+                    addressDiv.innerHTML = '<p class="error">⚠️ Error fetching address details</p>';
+                }
+            }, (error) => {
+                switch(error.code) {
+                    case error.PERMISSION_DENIED:
+                        statusDiv.innerHTML = '<p class="error">⚠️ Please allow location access to use this feature</p>';
+                        break;
+                    case error.POSITION_UNAVAILABLE:
+                        statusDiv.innerHTML = '<p class="error">⚠️ Location information unavailable</p>';
+                        break;
+                    case error.TIMEOUT:
+                        statusDiv.innerHTML = '<p class="error">⚠️ Location request timed out</p>';
+                        break;
+                    default:
+                        statusDiv.innerHTML = '<p class="error">⚠️ An unknown error occurred</p>';
+                        break;
+                }
+            });
+        }
+    </script>
+</body>
+</html>
