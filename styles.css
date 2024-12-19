@@ -1,0 +1,191 @@
+
+/* Modern color scheme and variables */
+:root {
+    --primary: #2563eb;
+    --primary-dark: #1e40af;
+    --secondary: #3b82f6;
+    --accent: #60a5fa;
+    --background: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-light: #64748b;
+}
+
+/* Base styles */
+body {
+    font-family: system-ui, -apple-system, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header styling */
+.header {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.header p {
+    margin: 0.5rem 0 0;
+    opacity: 0.9;
+}
+
+/* Story section styling */
+.story-section {
+    background: linear-gradient(135deg, #1e40af, #3b82f6);
+    color: white;
+    padding: 2rem;
+    margin: 2rem auto;
+    border-radius: 1rem;
+    max-width: 800px;
+    line-height: 1.7;
+}
+
+.story-section h2 {
+    color: #60a5fa;
+    margin-bottom: 1rem;
+}
+
+/* Main container */
+.container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: var(--card);
+    border-radius: 1rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+/* VPN warning styling */
+.vpn-warning {
+    background-color: #fef2f2;
+    border: 2px solid #dc2626;
+    color: #dc2626;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin: 1rem 0;
+    text-align: center;
+    display: none;
+}
+
+/* Button styling */
+button {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 300px;
+    display: block;
+    margin: 0 auto;
+}
+
+button:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* Status and address sections */
+#status, #address {
+    margin: 2rem 0;
+    line-height: 1.6;
+    padding: 1.5rem;
+    background-color: #f8fafc;
+    border-radius: 0.5rem;
+}
+
+.loading {
+    color: var(--text-light);
+    font-style: italic;
+    text-align: center;
+}
+
+.error {
+    color: #dc2626;
+    text-align: center;
+    padding: 1rem;
+    background-color: #fee2e2;
+    border-radius: 0.5rem;
+}
+
+/* Grid layout for address */
+.address-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+    margin-top: 1rem;
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.address-label {
+    font-weight: 600;
+    color: var(--primary);
+    padding-right: 1.5rem;
+}
+
+/* Coordinates display */
+.coordinates {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 1rem 0;
+}
+
+.coordinate-box {
+    background-color: var(--primary);
+    color: white;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    min-width: 150px;
+    text-align: center;
+}
+
+/* Footer styling */
+.footer {
+    margin-top: auto;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 2rem;
+    text-align: center;
+}
+
+.footer a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    transition: background-color 0.3s ease;
+}
+
+.footer a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.contact-info {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 1rem;
+}
